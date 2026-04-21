@@ -43,7 +43,7 @@ const reels = [{ youtube: "ChRgtvzgpLc" }, { youtube: "mUBa5voVd48" }];
 // ─── DÍA DEL LANZAMIENTO ───────────────────────────────────────────────
 // Cuando salga el video: cambiar launched a true y poner el ID de YouTube.
 // El ID es la parte final de la URL: youtube.com/watch?v=ESTE_ES_EL_ID
-const launched = true;
+const launched = false;
 const youtubeUrl = "https://www.youtube.com/watch?v=Q8Hji_hJcHQ";
 const youtubeId = youtubeUrl.split('v=')[1];
 const youtubeStart = 920;    // segundo desde donde arranca
@@ -330,18 +330,10 @@ const youtubeDuration = 30000; // milisegundos antes de volver a arrancar
     }
     .dogs-track {
       width: max-content;
-      animation: dogs-scroll 25s linear infinite;
+      cursor: grab;
     }
-    .dogs-track:hover {
-      animation-play-state: paused;
-    }
-    @keyframes dogs-scroll {
-      from {
-        transform: translateX(0);
-      }
-      to {
-        transform: translateX(-50%);
-      }
+    .dogs-track.dragging {
+      cursor: grabbing;
     }
   </style>
 
@@ -375,6 +367,58 @@ const youtubeDuration = 30000; // milisegundos antes de volver a arrancar
           },
         });
       };
+    }
+  </script>
+
+  <script>
+    const track = document.querySelector('.dogs-track') as HTMLElement;
+    if (track) {
+      const halfWidth = track.scrollWidth / 2;
+      let pos = 0;
+      let dragging = false;
+      let lastX = 0;
+
+      // Auto-scroll loop
+      function tick() {
+        if (!dragging) {
+          pos += 1.5;
+          if (pos >= halfWidth) pos -= halfWidth;
+        }
+        track.style.transform = `translateX(${-pos}px)`;
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+
+      // Mouse drag
+      track.addEventListener('mousedown', (e) => {
+        dragging = true;
+        lastX = e.clientX;
+        track.classList.add('dragging');
+      });
+      window.addEventListener('mousemove', (e) => {
+        if (!dragging) return;
+        pos -= e.clientX - lastX;
+        if (pos < 0) pos += halfWidth;
+        if (pos >= halfWidth) pos -= halfWidth;
+        lastX = e.clientX;
+      });
+      window.addEventListener('mouseup', () => {
+        dragging = false;
+        track.classList.remove('dragging');
+      });
+
+      // Touch drag
+      track.addEventListener('touchstart', (e) => {
+        dragging = true;
+        lastX = e.touches[0].clientX;
+      }, { passive: true });
+      track.addEventListener('touchmove', (e) => {
+        pos -= e.touches[0].clientX - lastX;
+        if (pos < 0) pos += halfWidth;
+        if (pos >= halfWidth) pos -= halfWidth;
+        lastX = e.touches[0].clientX;
+      }, { passive: true });
+      track.addEventListener('touchend', () => { dragging = false; });
     }
   </script>
 

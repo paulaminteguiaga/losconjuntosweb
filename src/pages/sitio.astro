@@ -127,12 +127,15 @@ const releases = [
   <!-- HERO -->
   <section class="relative min-h-screen overflow-hidden">
     <!-- Frame animation -->
-    <img
-      id="hero-frame"
-      src="/frames-tomate/1.png"
-      alt=""
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
       class="absolute inset-0 w-full h-full object-cover"
-    />
+    >
+      <source src="/frames-tomate/hero.mp4" type="video/mp4" />
+    </video>
     <!-- Overlay -->
     <div class="absolute inset-0 bg-black/40"></div>
     <div
@@ -189,22 +192,6 @@ const releases = [
     </div>
   </section>
 
-  <script>
-    const totalFrames = 10;
-    const fps = 3;
-    let current = 1;
-    const img = document.getElementById("hero-frame") as HTMLImageElement;
-
-    // Precargar frames
-    for (let i = 1; i <= totalFrames; i++) {
-      new Image().src = `/frames-tomate/${i}.png`;
-    }
-
-    setInterval(() => {
-      current = current >= totalFrames ? 1 : current + 1;
-      img.src = `/frames-tomate/${current}.png`;
-    }, 1000 / fps);
-  </script>
 
   <!-- MÚSICA -->
   <section id="musica" class="py-32 px-6 bg-brand-gray">
