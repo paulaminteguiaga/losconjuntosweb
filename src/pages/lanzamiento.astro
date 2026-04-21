@@ -229,13 +229,13 @@ const youtubeDuration = 30000; // milisegundos antes de volver a arrancar
         {
           [...dogs, ...dogs].map((dog) =>
             dog.src ? (
-              <div class="relative shrink-0 w-48 aspect-[5/6] overflow-hidden group">
+              <div class="dog-card relative shrink-0 w-48 aspect-[5/6] overflow-hidden group">
                 <img
                   src={dog.src}
                   alt={dog.label ?? ""}
                   class="w-full h-full object-cover object-bottom transition-transform duration-500 group-hover:scale-105"
                 />
-                <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div class="dog-overlay absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <p class="text-brand-red text-xl font-light tracking-widest uppercase font-display text-center px-3">
                     {dog.label}
                   </p>
@@ -335,6 +335,9 @@ const youtubeDuration = 30000; // milisegundos antes de volver a arrancar
     .dogs-track.dragging {
       cursor: grabbing;
     }
+    .dog-card.touched .dog-overlay {
+      opacity: 1;
+    }
   </style>
 
   <!-- FOOTER -->
@@ -406,6 +409,22 @@ const youtubeDuration = 30000; // milisegundos antes de volver a arrancar
         dragging = false;
         track.classList.remove('dragging');
       });
+
+      // Mobile: tap card → mostrar nombre y pausar
+      track.addEventListener('touchstart', (e) => {
+        const card = (e.target as HTMLElement).closest('.dog-card') as HTMLElement;
+        if (card) {
+          card.classList.add('touched');
+          dragging = true;
+        }
+      }, { passive: true });
+      track.addEventListener('touchend', (e) => {
+        const card = (e.target as HTMLElement).closest('.dog-card') as HTMLElement;
+        if (card) {
+          card.classList.remove('touched');
+          dragging = false;
+        }
+      }, { passive: true });
 
     }
   </script>
