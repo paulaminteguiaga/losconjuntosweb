@@ -6,7 +6,7 @@
 
 // ── CONFIGURACIÓN LANZAMIENTO ─────────────────────────────────────────────────
 // Cambiar a `true` el día del lanzamiento.
-export const launched = false;
+export const launched = true;
 
 // ── COUNTDOWN ─────────────────────────────────────────────────
 // Fecha y hora del countdown (formato ISO, con zona horaria Argentina -03:00)
