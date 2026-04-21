@@ -16,7 +16,7 @@ const socials = [
   },
   {
     name: "YouTube",
-    url: "#",
+    url: "https://www.youtube.com/@losconjuntos",
     icon: "M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z",
   },
   {
@@ -38,20 +38,16 @@ const dogs = [
   { label: null, src: null },
 ];
 
-const reels = [
-  { src: "/REELS/0-%20INCIO%20REEL.mp4" },
-  { src: "/REELS/1-%20TIEMPO%20EMPIEZA%20REEL.mp4" },
-  // { src: "/REELS/2-%20LOS%20CLONES%20REEL.mp4" },
-  // { src: "/REELS/3-%20ROCK%20FUTBOL%20REEL.mp4" },
-  // { src: "/REELS/4-%20EJERCITO%20REEL.mp4" },
-  // { src: "/REELS/5-%20PROBLEMAS%20REEL.mp4" },
-];
+const reels = [{ youtube: "ChRgtvzgpLc" }, { youtube: "mUBa5voVd48" }];
 
 // ─── DÍA DEL LANZAMIENTO ───────────────────────────────────────────────
 // Cuando salga el video: cambiar launched a true y poner el ID de YouTube.
 // El ID es la parte final de la URL: youtube.com/watch?v=ESTE_ES_EL_ID
 const launched = true;
 const youtubeUrl = "https://www.youtube.com/watch?v=Q8Hji_hJcHQ";
+const youtubeId = youtubeUrl.split('v=')[1];
+const youtubeStart = 920;    // segundo desde donde arranca
+const youtubeDuration = 30000; // milisegundos antes de volver a arrancar
 // ────────────────────────────────────────────────────────────────────────
 ---
 
@@ -109,72 +105,49 @@ const youtubeUrl = "https://www.youtube.com/watch?v=Q8Hji_hJcHQ";
     </div>
   </nav>
 
-  <!-- HERO COUNTDOWN -->
-  <section
-    class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 overflow-hidden"
-  >
-    <div
-      class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(232,128,0,0.12)_0%,_transparent_70%)]"
-    >
-    </div>
-    <div
-      class="absolute inset-0 bg-[linear-gradient(to_bottom,_transparent_60%,_#0A0A0A_100%)]"
-    >
-    </div>
+  <!-- HERO -->
+  <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 overflow-hidden">
 
-    <div
-      class="relative z-10 max-w-4xl mx-auto grid grid-cols-2 items-center gap-16 md:gap-24"
-    >
-      <!-- Live Session -->
-      <div class="text-right">
-        <p class="text-brand-red text-xs tracking-[0.5em] uppercase mb-2">
-          Live Session
-        </p>
-        <p class="text-brand-logo/40 text-xs tracking-[0.4em] uppercase">
-          Primero de Mayo
-        </p>
+    {launched ? (
+      <!-- YouTube background -->
+      <div class="yt-bg-wrap">
+        <div id="yt-bg-player" class="yt-bg-iframe" />
+        <div class="absolute inset-0" />
       </div>
+    ) : (
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(232,128,0,0.12)_0%,_transparent_70%)]" />
+    )}
 
-      <!-- Ciudad de Perros -->
-      <h1
-        class="grid grid-cols-3 gap-x-[0.2em] font-display font-light text-[clamp(2rem,6vw,5rem)] leading-none uppercase text-brand-logo w-fit justify-self-start"
-      >
-        <span class="text-center">C</span><span class="text-center">I</span
-        ><span class="text-center">U</span>
-        <span class="text-center">D</span><span class="text-center">A</span
-        ><span class="text-center">D</span>
-        <span class="invisible">C</span><span class="text-center">D</span><span
-          class="text-center">E</span
+    <div class="absolute inset-0 bg-[linear-gradient(to_bottom,_transparent_60%,_#0A0A0A_100%)]" />
+
+    {launched ? (
+      <!-- Launched: solo botón -->
+      <div class="relative z-10">
+        <a
+          href={youtubeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-10 py-5 bg-brand-red text-white text-2xl tracking-widest uppercase hover:bg-brand-logo transition-colors"
         >
-        <span class="text-center">P</span><span class="text-center">E</span
-        ><span class="text-center">R</span>
-        <span class="text-center">R</span><span class="text-center">O</span
-        ><span class="text-center">S</span>
-      </h1>
-
-      {
-        launched ? (
-          <a
-            href={youtubeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="col-span-2 justify-self-center flex items-center gap-4 px-10 py-5 bg-brand-red hover:bg-red-700 transition-colors"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              class="text-brand-logo shrink-0"
-            >
-              <polygon points="5 3 19 12 5 21 5 3" />
-            </svg>
-            <span class="font-display text-2xl uppercase tracking-widest text-brand-logo">
-              Miralo ahora
-            </span>
-          </a>
-        ) : (
-          <div
+          Miralo ahora
+        </a>
+      </div>
+    ) : (
+      <div class="relative z-10 max-w-4xl mx-auto grid grid-cols-2 items-center gap-16 md:gap-24">
+        <!-- Live Session -->
+        <div class="text-right">
+          <p class="text-brand-red text-xs tracking-[0.5em] uppercase mb-2">Live Session</p>
+          <p class="text-brand-logo/40 text-xs tracking-[0.4em] uppercase">Primero de Mayo</p>
+        </div>
+        <!-- Ciudad de Perros -->
+        <h1 class="grid grid-cols-3 gap-x-[0.2em] font-display font-light text-[clamp(2rem,6vw,5rem)] leading-none uppercase text-brand-logo w-fit justify-self-start">
+          <span class="text-center">C</span><span class="text-center">I</span><span class="text-center">U</span>
+          <span class="text-center">D</span><span class="text-center">A</span><span class="text-center">D</span>
+          <span class="invisible">C</span><span class="text-center">D</span><span class="text-center">E</span>
+          <span class="text-center">P</span><span class="text-center">E</span><span class="text-center">R</span>
+          <span class="text-center">R</span><span class="text-center">O</span><span class="text-center">S</span>
+        </h1>
+        <div
             id="countdown"
             class="col-span-2 flex gap-6 md:gap-12 justify-center"
           >
@@ -232,9 +205,8 @@ const youtubeUrl = "https://www.youtube.com/watch?v=Q8Hji_hJcHQ";
               </span>
             </div>
           </div>
-        )
-      }
-    </div>
+        </div>
+      )}
   </section>
 
   <!-- PERROS -->
@@ -294,14 +266,25 @@ const youtubeUrl = "https://www.youtube.com/watch?v=Q8Hji_hJcHQ";
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
             {reels.map((reel) => (
               <div class="bg-brand-dark border border-white/5 overflow-hidden">
-                <video
-                  src={reel.src}
-                  autoplay
-                  muted
-                  loop
-                  playsinline
-                  class="w-full aspect-[9/16] object-cover"
-                />
+                {reel.youtube ? (
+                  <div class="relative w-full aspect-[9/16]">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${reel.youtube}?autoplay=1&mute=1&loop=1&playlist=${reel.youtube}&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0`}
+                      allow="autoplay; encrypted-media"
+                      class="absolute inset-0 w-full h-full"
+                    />
+                    <div class="absolute inset-0" />
+                  </div>
+                ) : (
+                  <video
+                    src={reel.src}
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    class="w-full aspect-[9/16] object-cover"
+                  />
+                )}
                 {reel.title && (
                   <p class="px-4 py-3 text-brand-logo/40 text-xs tracking-widest uppercase">
                     {reel.title}
@@ -325,6 +308,26 @@ const youtubeUrl = "https://www.youtube.com/watch?v=Q8Hji_hJcHQ";
   </section>
 
   <style is:global>
+    .yt-bg-wrap {
+      position: absolute;
+      top: 1.5rem;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .yt-bg-iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100vw;
+      height: 56.25vw;
+      min-height: 100vh;
+      min-width: 177.78vh;
+      transform: translate(-50%, -50%);
+      border: none;
+    }
     .dogs-track {
       width: max-content;
       animation: dogs-scroll 25s linear infinite;
@@ -348,6 +351,32 @@ const youtubeUrl = "https://www.youtube.com/watch?v=Q8Hji_hJcHQ";
   >
     <p>© 2026 Los Conjuntos. Todos los derechos reservados.</p>
   </footer>
+
+  <script define:vars={{ youtubeId, youtubeStart, youtubeDuration, launched }} is:inline>
+    if (launched && document.getElementById('yt-bg-player')) {
+      var tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+
+      var ytPlayer;
+      window.onYouTubeIframeAPIReady = function () {
+        ytPlayer = new YT.Player('yt-bg-player', {
+          videoId: youtubeId,
+          playerVars: {
+            autoplay: 1, mute: 1, controls: 0,
+            playsinline: 1, rel: 0, showinfo: 0,
+          },
+          events: {
+            onReady: function (e) {
+              e.target.seekTo(youtubeStart);
+              e.target.playVideo();
+              setInterval(function () { ytPlayer.seekTo(youtubeStart); }, youtubeDuration);
+            },
+          },
+        });
+      };
+    }
+  </script>
 
   <script define:vars={{ launchDate: LAUNCH_DATE.toISOString(), launched }}>
     if (!launched) {
