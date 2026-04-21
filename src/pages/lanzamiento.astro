@@ -333,10 +333,12 @@ import { launched, LAUNCH_DATE, youtubeUrl, youtubeId, youtubeStart, youtubeDura
       let dragging = false;
       let lastX = 0;
 
+      const speed = window.matchMedia('(max-width: 768px)').matches ? 3 : 1.5;
+
       // Auto-scroll loop
       function tick() {
         if (!dragging) {
-          pos += 1.5;
+          pos += speed;
           if (pos >= halfWidth) pos -= halfWidth;
         }
         track.style.transform = `translateX(${-pos}px)`;
