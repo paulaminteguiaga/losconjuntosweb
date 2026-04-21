@@ -149,12 +149,12 @@ const youtubeDuration = 30000; // milisegundos antes de volver a arrancar
         </h1>
         <div
             id="countdown"
-            class="col-span-2 flex gap-6 md:gap-12 justify-center"
+            class="col-span-2 flex gap-2 md:gap-12 justify-center"
           >
             <div class="flex flex-col items-center">
               <span
                 id="days"
-                class="font-display text-5xl md:text-7xl text-brand-logo tabular-nums"
+                class="font-display text-[clamp(1.75rem,8vw,4.5rem)] text-brand-logo tabular-nums"
               >
                 --
               </span>
@@ -162,13 +162,13 @@ const youtubeDuration = 30000; // milisegundos antes de volver a arrancar
                 Días
               </span>
             </div>
-            <span class="font-display text-5xl md:text-7xl text-brand-red/40 leading-none">
+            <span class="font-display text-[clamp(1.75rem,8vw,4.5rem)] text-brand-red/40 leading-none">
               :
             </span>
             <div class="flex flex-col items-center">
               <span
                 id="hours"
-                class="font-display text-5xl md:text-7xl text-brand-logo tabular-nums"
+                class="font-display text-[clamp(1.75rem,8vw,4.5rem)] text-brand-logo tabular-nums"
               >
                 --
               </span>
@@ -176,13 +176,13 @@ const youtubeDuration = 30000; // milisegundos antes de volver a arrancar
                 Horas
               </span>
             </div>
-            <span class="font-display text-5xl md:text-7xl text-brand-red/40 leading-none">
+            <span class="font-display text-[clamp(1.75rem,8vw,4.5rem)] text-brand-red/40 leading-none">
               :
             </span>
             <div class="flex flex-col items-center">
               <span
                 id="minutes"
-                class="font-display text-5xl md:text-7xl text-brand-logo tabular-nums"
+                class="font-display text-[clamp(1.75rem,8vw,4.5rem)] text-brand-logo tabular-nums"
               >
                 --
               </span>
@@ -190,13 +190,13 @@ const youtubeDuration = 30000; // milisegundos antes de volver a arrancar
                 Min
               </span>
             </div>
-            <span class="font-display text-5xl md:text-7xl text-brand-red/40 leading-none">
+            <span class="font-display text-[clamp(1.75rem,8vw,4.5rem)] text-brand-red/40 leading-none">
               :
             </span>
             <div class="flex flex-col items-center">
               <span
                 id="seconds"
-                class="font-display text-5xl md:text-7xl text-brand-logo tabular-nums"
+                class="font-display text-[clamp(1.75rem,8vw,4.5rem)] text-brand-logo tabular-nums"
               >
                 --
               </span>
@@ -407,18 +407,6 @@ const youtubeDuration = 30000; // milisegundos antes de volver a arrancar
         track.classList.remove('dragging');
       });
 
-      // Touch drag
-      track.addEventListener('touchstart', (e) => {
-        dragging = true;
-        lastX = e.touches[0].clientX;
-      }, { passive: true });
-      track.addEventListener('touchmove', (e) => {
-        pos -= e.touches[0].clientX - lastX;
-        if (pos < 0) pos += halfWidth;
-        if (pos >= halfWidth) pos -= halfWidth;
-        lastX = e.touches[0].clientX;
-      }, { passive: true });
-      track.addEventListener('touchend', () => { dragging = false; });
     }
   </script>
 
