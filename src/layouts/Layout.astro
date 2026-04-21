@@ -2,8 +2,9 @@
 interface Props {
   title?: string;
 }
-const { title = 'Los Conjuntos' } = Astro.props;
+const { title = "Los Conjuntos" } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -12,10 +13,69 @@ const { title = 'Los Conjuntos' } = Astro.props;
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <meta name="description" content="Los Conjuntos — banda de rock indie" />
   </head>
-  <body class="bg-brand-dark text-white font-body antialiased overflow-x-hidden">
+  <body
+    class="bg-brand-dark text-white font-body antialiased overflow-x-hidden"
+  >
+    <!-- LOADER -->
+    <div
+      id="page-loader"
+      class="fixed inset-0 z-[9999] bg-brand-dark flex items-center justify-center -translate-y-16"
+    >
+      <div
+        class="loader-logo grid grid-cols-3 gap-x-[0.5em] font-display font-black text-[clamp(2rem,8vw,5rem)] leading-none uppercase text-brand-logo select-none"
+      >
+        <span class="text-center">L</span><span class="text-center">O</span
+        ><span class="text-center">S</span>
+        <span class="text-center">C</span><span class="text-center">O</span
+        ><span class="text-center">N</span>
+        <span class="text-center">J</span><span class="text-center">U</span
+        ><span class="text-center">N</span>
+        <span class="text-center">T</span><span class="text-center">O</span
+        ><span class="text-center">S</span>
+      </div>
+    </div>
+
     <slot />
+
+    <style is:global>
+      #page-loader {
+        transition: opacity 0.6s ease;
+      }
+      #page-loader.fade-out {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .loader-logo {
+        animation: loader-spin 3s linear infinite;
+      }
+      @keyframes loader-spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+
+    <script>
+      const loader = document.getElementById("page-loader");
+      const start = Date.now();
+
+      window.addEventListener("load", () => {
+        const elapsed = Date.now() - start;
+        const remaining = Math.max(0, 800 - elapsed);
+        setTimeout(() => {
+          loader?.classList.add("fade-out");
+          setTimeout(() => loader?.remove(), 650);
+        }, remaining);
+      });
+    </script>
   </body>
 </html>
