@@ -28,7 +28,7 @@ export const youtubeDuration = 30000;
 export const dogs = [
   { label: "ROSE",    src: "/perros/@susanakorenhof.png" },
   { label: "ALBERTA", src: "/perros/@alvarosalazar7.png" },
-  // { label: "BECCA",    src: "/perros/@paulaaminteguiaga.png" },
+  { label: "BECCA",    src: "/perros/@paulaaminteguiaga.png" },
   // { label: "DIEGUITO", src: "/perros/@susanakorenhof2.png" },
   // { label: "INUGAMI",  src: "/perros/@inugami_yokai.png" },
   // { label: "...",      src: "/perros/@jeremiagzl.png" },
@@ -49,6 +49,8 @@ export const dogs = [
 export const reels = [
   { youtube: "ChRgtvzgpLc" },
   { youtube: "mUBa5voVd48" },
+  { youtube: "8rXdB0trg10" },
+  { youtube: "BzjVXIyTysY" }
 ];
 
 
