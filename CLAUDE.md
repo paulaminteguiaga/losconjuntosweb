@@ -20,13 +20,14 @@ Static promotional website for **Los Conjuntos** (indie rock band, La Plata, Arg
 
 - **`/`** (`index.astro`) — redirects to `/lanzamiento`
 - **`/lanzamiento`** (`lanzamiento.astro`) — countdown page to a live session ("Ciudad de Perros", May 1 2026). Contains a `launched` boolean flag; when `true`, swaps the countdown for a YouTube link. Also shows an Instagram reels gallery.
-- **`/sitio`** (`sitio.astro`) — main band website: animated hero (10-frame carousel cycling at 3 FPS via JS), discography cards linking to Spotify, upcoming shows section, band info, and social links.
+- **`/sitio`** (`sitio.astro`) — main band website: animated hero (10-frame carousel cycling at 3 FPS via JS), discography cards linking to Spotify, upcoming merch section, band info, and social links.
 
 Shared HTML shell lives in `src/layouts/Layout.astro` (includes the Archivo Google Font).
 
 ### Styling conventions
 
 Custom Tailwind tokens defined in `tailwind.config.mjs`:
+
 - `brand-dark` (`#0A0A0A`) — page background
 - `brand-gray` (`#1A1A1A`) — secondary background
 - `brand-red` (`#1a9e1a`) — accent (green despite the name)

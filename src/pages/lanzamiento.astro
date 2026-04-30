@@ -88,7 +88,7 @@ import { launched, LAUNCH_DATE, youtubeUrl, youtubeId, youtubeStart, youtubeDura
       <div class="relative z-10 max-w-4xl mx-auto grid grid-cols-2 items-center gap-16 md:gap-24">
         <!-- Live Session -->
         <div class="text-right">
-          <p class="text-brand-red text-xs tracking-[0.5em] uppercase mb-2">Live Session</p>
+          <p class="text-brand-red text-xs tracking-[0.5em] uppercase mb-2">SESIÓN EN VIVO</p>
           <p class="text-brand-logo/40 text-xs tracking-[0.4em] uppercase">Primero de Mayo</p>
         </div>
         <!-- Ciudad de Perros -->
@@ -221,7 +221,6 @@ import { launched, LAUNCH_DATE, youtubeUrl, youtubeId, youtubeStart, youtubeDura
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
             {reels.map((reel) => (
               <div class="bg-brand-dark border border-white/5 overflow-hidden">
-                {reel.youtube ? (
                   <div class="relative w-full aspect-[9/16]">
                     <iframe
                       src={`https://www.youtube.com/embed/${reel.youtube}?autoplay=1&mute=1&loop=1&playlist=${reel.youtube}&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0`}
@@ -230,21 +229,6 @@ import { launched, LAUNCH_DATE, youtubeUrl, youtubeId, youtubeStart, youtubeDura
                     />
                     <div class="absolute inset-0" />
                   </div>
-                ) : (
-                  <video
-                    src={reel.src}
-                    autoplay
-                    muted
-                    loop
-                    playsinline
-                    class="w-full aspect-[9/16] object-cover"
-                  />
-                )}
-                {reel.title && (
-                  <p class="px-4 py-3 text-brand-logo/40 text-xs tracking-widest uppercase">
-                    {reel.title}
-                  </p>
-                )}
               </div>
             ))}
           </div>

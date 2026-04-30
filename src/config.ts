@@ -26,20 +26,18 @@ export const youtubeDuration = 30000;
 // Para agregar: { label: "NOMBRE", src: "/perros/@handle.png" }
 // Para un slot vacío (próximo): { label: null, src: null }
 export const dogs = [
-  { label: "ROSE",    src: "/perros/@susanakorenhof.png" },
+  { label: "ROSE",      src: "/perros/@susanakorenhof.png" },
   { label: "ALBERTA", src: "/perros/@alvarosalazar7.png" },
   { label: "BECCA",    src: "/perros/@paulaaminteguiaga.png" },
-  // { label: "DIEGUITO", src: "/perros/@susanakorenhof2.png" },
-  // { label: "INUGAMI",  src: "/perros/@inugami_yokai.png" },
-  // { label: "...",      src: "/perros/@jeremiagzl.png" },
-  // { label: "...",      src: "/perros/@nahuetulian.png" },
-  // { label: "...",      src: "/perros/@soffia.rv.png" },
-  { label: null, src: null },
-  { label: null, src: null },
-  { label: null, src: null },
-  { label: null, src: null },
-  { label: null, src: null },
-  { label: null, src: null },
+  { label: "DIEGUITO", src: "/perros/@susanakorenhof2.png" },
+  { label: "NEO",  src: "/perros/@inugami_yokai.png" },
+  { label: "MALU",      src: "/perros/@jeremiagzl.png" },
+  { label: "???",      src: "/perros/@nahuetulian.png" },
+  { label: "KURT",      src: "/perros/@soffia.rv.png" },
+  { label: "DUKE", src: "/perros/@brendamorend.jpg" },
+  { label: "PANCHITO", src: "/perros/@luca.mottin.jpg" },
+  { label: "FRESITA", src: "/perros/@rosasanchezraverta@luca.mottin.jpg" },
+  { label: "AIRELAI", src: "/perros/@sil.mele.jpg" },
 ];
 
 // ── CAMINO A CIUDAD DE PERROS ────────────────────────────
@@ -50,7 +48,8 @@ export const reels = [
   { youtube: "ChRgtvzgpLc" },
   { youtube: "mUBa5voVd48" },
   { youtube: "8rXdB0trg10" },
-  { youtube: "BzjVXIyTysY" }
+  { youtube: "BzjVXIyTysY" },
+  { youtube: "i1rN3oCSt5U" },
 ];
 
 
