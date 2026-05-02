@@ -14,7 +14,7 @@ export const LAUNCH_DATE = new Date("2026-05-01T20:00:00-03:00");
 
 // ── LANZAMIENTO ─────────────────────────────────────────────────
 // URL completa del video de YouTube (Live Session)
-export const youtubeUrl = "https://www.youtube.com/watch?v=Q8Hji_hJcHQ";
+export const youtubeUrl = "http://youtube.com/watch?v=cfbCSoTEu8Q";
 export const youtubeId = youtubeUrl.split("v=")[1];
 // Segundo del video desde donde arranca el fondo (cuando launched = true)
 export const youtubeStart = 920;
